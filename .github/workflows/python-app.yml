@@ -38,6 +38,9 @@ jobs:
     - name: Test with pytest
       run: |
         pytest --junit-xml=test-results.xml
+    - name: huh
+      run: |
+        ls
     - name: Surface failing tests
       if: always()
       uses: pmeier/pytest-results-action@main
@@ -45,7 +48,7 @@ jobs:
         # A list of JUnit XML files, directories containing the former, and wildcard
         # patterns to process.
         # See @actions/glob for supported patterns.
-        path: /home/runner/work/fastapi-ga/fastapi-ga/test-resultsnope.xml
+        path: /home/runner/work/fastapi-ga/fastapi-ga/test-results.xml
     
         # Add a summary of the results at the top of the report
         # Default: true
