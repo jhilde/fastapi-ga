@@ -41,6 +41,7 @@ jobs:
     - name: huh
       run: |
         ls
+        cat test-results.xml
     - name: Surface failing tests
       if: always()
       uses: pmeier/pytest-results-action@main
