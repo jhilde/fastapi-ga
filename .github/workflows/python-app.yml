@@ -80,9 +80,9 @@ jobs:
         # Default: fEX
         display-options: fEX
 
-    # Fail the workflow if no JUnit XML was found.
-    # Default: true
-    fail-on-empty: true
+        # Fail the workflow if no JUnit XML was found.
+        # Default: true
+        fail-on-empty: true
     - name: Security scan with bandit
       run: |
         bandit -c bandit.yaml -r .
