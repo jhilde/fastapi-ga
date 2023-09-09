@@ -61,6 +61,28 @@ jobs:
         name: pytest-results-3.11
         path: junit/test-results.xml
         # Use always() to always run this step to publish test results when there are test failures
+    - name: Surface failing tests
+      if: always()
+      uses: pmeier/pytest-results-action@main
+      with:
+        # A list of JUnit XML files, directories containing the former, and wildcard
+        # patterns to process.
+        # See @actions/glob for supported patterns.
+        path: junit/test-results.xml
+
+        # Add a summary of the results at the top of the report
+        # Default: true
+        summary: true
+
+        # Select which results should be included in the report.
+        # Follows the same syntax as
+        # `pytest -r`
+        # Default: fEX
+        display-options: fEX
+
+    # Fail the workflow if no JUnit XML was found.
+    # Default: true
+    fail-on-empty: true
     - name: Security scan with bandit
       run: |
         bandit -c bandit.yaml -r .
