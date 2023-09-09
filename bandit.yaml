@@ -1,1 +1,1 @@
-exclude_dirs: ['**/test_*.py', 'test_*.py]
+exclude_dirs: ['**/test_*.py', 'test_*.py']
