@@ -64,3 +64,22 @@ jobs:
     - name: Security scan with bandit
       run: |
         bandit -c bandit.yaml -r .
+
+    - name: Generate OpenAPI file
+      uses: column-st/fastapi-openapi-specs-action@v1.0.2
+      with:
+        moduleDir: app
+        fileName: main.py
+        appName: app
+
+      # # Uses an external tool, openapitools-generator-action, to generate the client code.
+      # # The 'openapirc.json' file is the following: { "packageName": "collector", "projectName": "collector" }
+      # # and it lives inside the master branch of the repository. Command outputs a new folder called 
+      # # 'python-client' with the relevant client code.
+      # - name: Generate Python Client
+      #   uses: triaxtec/openapitools-generator-action@v1.0.0
+      #   with:
+      #     generator: python
+      #     openapi-file: openapi.yaml
+      #     config-file: openapirc.json
+  
