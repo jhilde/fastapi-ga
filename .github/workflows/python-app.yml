@@ -101,6 +101,13 @@ jobs:
       id: deployment
       uses: actions/deploy-pages@v4
 
+    - name: Generate Markdown
+      uses: openapi-generators/openapitools-generator-action@v1
+      with:
+        generator: markdown
+
+    - run: ls
+
   # deploy:
   #   environment:
   #     name: github-pages
