@@ -65,11 +65,7 @@ jobs:
         bandit -c bandit.yaml -r .
 
     - name: Generate OpenAPI file
-      uses: column-st/fastapi-openapi-specs-action@v1.0.2
-      with:
-        moduleDir: app
-        fileName: main.py
-        appName: app
+      run: python app/util.py
 
       # # Uses an external tool, openapitools-generator-action, to generate the client code.
       # # The 'openapirc.json' file is the following: { "packageName": "collector", "projectName": "collector" }
