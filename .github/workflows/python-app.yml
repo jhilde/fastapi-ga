@@ -78,8 +78,11 @@ jobs:
       with:
         generator: html
 
-    - name: where?
-      run: ls
+    - name: Upload openapi html
+      uses: actions/upload-artifact@v3
+      with:
+        name: html-client
+        path: html-client
 
       # # Uses an external tool, openapitools-generator-action, to generate the client code.
       # # The 'openapirc.json' file is the following: { "packageName": "collector", "projectName": "collector" }
