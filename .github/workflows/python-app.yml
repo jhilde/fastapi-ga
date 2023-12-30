@@ -67,6 +67,12 @@ jobs:
     - name: Generate OpenAPI file
       run: python app/util.py
 
+    - name: Upload openapi
+      uses: actions/upload-artifact@v3
+      with:
+        name: openapi
+        path: openapi.json
+
       # # Uses an external tool, openapitools-generator-action, to generate the client code.
       # # The 'openapirc.json' file is the following: { "packageName": "collector", "projectName": "collector" }
       # # and it lives inside the master branch of the repository. Command outputs a new folder called 
