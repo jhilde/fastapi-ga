@@ -29,6 +29,8 @@ on:
 
 permissions:
   contents: read
+  pages: write
+  id-token: write
 
 jobs:
   build:
@@ -73,16 +75,49 @@ jobs:
         name: openapi
         path: openapi.json
 
-    - name: Generate HTML
-      uses: openapi-generators/openapitools-generator-action@v1
+    - name: redoc-cli test
+      uses: seeebiii/redoc-cli-github-action@v10
       with:
-        generator: html
+        args: 'bundle openapi.json -o index.html'
 
-    - name: Upload openapi html
+    - name: Upload openapi
       uses: actions/upload-artifact@v3
       with:
-        name: html-client
-        path: html-client
+        name: html
+        path: index.html
+
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
+
+  # deploy:
+  #   environment:
+  #     name: github-pages
+  #     url: ${{ steps.deployment.outputs.page_url }}
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
+  #     - name: Setup Pages
+  #       uses: actions/configure-pages@v4
+  #     - name: Upload artifact
+  #       uses: actions/upload-pages-artifact@v3
+  #       with:
+  #         # Upload entire repository
+  #         path: '.'
+  #     - name: Deploy to GitHub Pages
+  #       id: deployment
+  #       uses: actions/deploy-pages@v4
+
+    # - name: Generate HTML
+    #   uses: openapi-generators/openapitools-generator-action@v1
+    #   with:
+    #     generator: html
+
+    # - name: Upload openapi html
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #     name: html-client
+    #     path: html-client
 
       # # Uses an external tool, openapitools-generator-action, to generate the client code.
       # # The 'openapirc.json' file is the following: { "packageName": "collector", "projectName": "collector" }
