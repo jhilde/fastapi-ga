@@ -36,4 +36,9 @@ async def health():
 
 @app.post("/fun")
 async def create(fun: FunStuff) -> MoreFun:
-    return MoreFun(title="title", description="desc", color=Color.BLUE, id=uuid.uuid4())
+    return MoreFun(
+        title="title",
+        description="desc",
+        color=Color.BLUE,
+        id=uuid.uuid4()
+    )
