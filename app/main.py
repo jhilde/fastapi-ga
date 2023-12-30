@@ -1,4 +1,3 @@
-import collections
 import uuid
 from enum import Enum
 from uuid import UUID
