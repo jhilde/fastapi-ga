@@ -3,9 +3,18 @@ from enum import Enum
 from uuid import UUID
 
 from fastapi import FastAPI
+from fastapi.routing import APIRoute
 from pydantic import BaseModel
 
-app = FastAPI()
+
+def custom_generate_unique_id(route: APIRoute):
+    print(route)
+    return f"Justin-{route.name}"
+
+
+app = FastAPI(
+    generate_unique_id_function=custom_generate_unique_id,
+)
 
 
 class Color(Enum):
@@ -36,9 +45,4 @@ async def health():
 
 @app.post("/fun")
 async def create(fun: FunStuff) -> MoreFun:
-    return MoreFun(
-        title="title",
-        description="desc",
-        color=Color.BLUE,
-        id=uuid.uuid4()
-    )
+    return MoreFun(title="title", description="desc", color=Color.BLUE, id=uuid.uuid4())
