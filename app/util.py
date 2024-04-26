@@ -1,6 +1,6 @@
-import json
+# import json
 
-import main
+# import main
 
-with open("openapi.json", "w") as f:
-    f.write(json.dumps(main.app.openapi()))
+# with open("openapi.json", "w") as f:
+#     f.write(json.dumps(main.app.openapi()))
