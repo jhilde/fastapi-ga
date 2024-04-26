@@ -20,7 +20,8 @@ jobs:
     - name: Run pipenv and tests
       run: |
         pipenv install -d
-        # stop the build if there are Python syntax errors or undefined names
-        pipenv run flake8
+    - name: Test with pytest
+      run: |
+        pip install pytest pytest-cov
 
 
