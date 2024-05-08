@@ -32,5 +32,15 @@ jobs:
           pip install ruff
           ruff check --output-format github  .
         continue-on-error: true
+      - name: Static Analysis with Bandit
+        run: |
+          pip install bandit
+          bandit -c bandit.yaml -ll -ii -r . -f json -o bandit-report.json
+      - name: Upload Bandit Scan Artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bandit-findings
+          path: bandit-report.json
 
 
