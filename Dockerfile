@@ -2,7 +2,7 @@ FROM python:3.12-slim-bullseye as python-base
 
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y libpq-dev python-dev
+    apt-get install -y gcc libpq-dev python-dev
 
 
 # expect to have new relic available
@@ -14,8 +14,8 @@ FROM python-base
 
 WORKDIR /app
 
-COPY ./requirements.txt /app/requirements.txt
+# COPY ./requirements.txt /app/requirements.txt
 
-RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
+# RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
 
 COPY ./app /app/app
