@@ -6,7 +6,7 @@ name = "pypi"
 [packages]
 fastapi = "*"
 sqlalchemy = "*"
-psycopg2 = "*"
+"psycopg[c]" = "*"
 pydantic-settings = "*"
 boto3 = "*"
 newrelic = "*"
